@@ -1,0 +1,175 @@
+{
+    "schema": {
+        "crud_objects": {
+            "Schemas": {
+                "operations": {
+                    "SchemasList": {
+                        "method": "get",
+                        "call": {
+                            "path": "/v1/scim/v2/Schemas"
+                        },
+                        "processing_options": {
+                            "output_field": "Resources"
+                        }
+                    }
+                },
+                "key": "id",
+                "resources": {
+                    "attributes": [
+                        {
+                            "caseExact": "boolean",
+                            "description": "string*",
+                            "multiValued": "boolean*",
+                            "mutability": "string*",
+                            "name": "string*",
+                            "referenceTypes": "string*",
+                            "required": "boolean*",
+                            "returned": "string*",
+                            "type": "string*",
+                            "uniqueness": "string*"
+                        }
+                    ],
+                    "id": "string*",
+                    "name": "string*"
+                }
+            },
+            "Users": {
+                "operations": {
+                    "UsersList": {
+                        "method": "get",
+                        "call": {
+                            "path": "/v1/scim/v2/Users"
+                        },
+                        "processing_options": {
+                            "output_field": "Resources"
+                        }
+                    },
+                    "UserCreate": {
+                        "method": "post",
+                        "semantics": "create",
+                        "call": {
+                            "path": "/v1/scim/v2/Users"
+                        },
+                        "processing_options": {
+                            "output_field": null
+                        },
+                        "resource_allowance_default": "optional",
+                        "resource_prohibited": [
+                            "id",
+                            "meta",
+                            "schemas"
+                        ],
+                        "resource_mandatory": [
+                            "userName",
+                            "active",
+                            "displayName",
+                            "name_givenName",
+                            "name_familyName"
+                        ]
+                    },
+                    "UserUpdate": {
+                        "method": "patch",
+                        "semantics": "update",
+                        "scimProtocol": true,
+                        "call": {
+                            "path": "/v1/scim/v2/Users/{id}"
+                        },
+                        "processing_options": {
+                            "output_field": "Resources"
+                        },
+                        "resource_allowance_default": "optional",
+                        "resource_prohibited": [
+                            "meta",
+                            "schemas"
+                        ],
+                        "resource_mandatory": [
+                            "id"
+                        ]
+                    },
+                    "UserDelete": {
+                        "method": "delete",
+                        "semantics": "delete",
+                        "call": {
+                            "path": "/Users/{id}"
+                        },
+                        "processing_options": {
+                            "output_field": "Resources"
+                        },
+                        "resource_allowance_default": "prohibited",
+                        "resource_mandatory": [
+                            "id"
+                        ]
+                    }
+                },
+                "key": "id",
+                "resources": {
+                    "id": "string*",
+                    "schemas": [
+                        "string*"
+                    ],
+                    "meta": {
+                        "resourceType": "_:string*",
+                        "created": "_:string*",
+                        "lastModified": "_:string*",
+                        "location": "_:string*",
+                        "version": "_:string*"
+                    },
+                    "name": {
+                        "familyName": "_:string*",
+                        "givenName": "_:string*"
+                    },
+                    "userName": "string*",
+                    "active": "boolean*",
+                    "informedk12_2.0_user:urn:ietf:params:scim:schemas:extension:informedk12:2.0:User": {
+                        "ik12Roles": ["string*"]
+                    }
+                }
+            }
+      }
+    },
+    "rest": {
+        "config": {
+            "baseUrl": "https://{tenant_id}/api",
+            "sslLegacyProtocols": true,
+            "get": {
+                "pagination": {
+                    "mode": "skip_take",
+                    "params": {
+                        "count": "{take_count}",
+                        "startIndex": "{skip_count}"
+                    }
+                }
+            },
+            "authentication": "aeries",
+            "call_handling": "generic",
+            "test_connection": {
+                "url": "/v1/scim/v2/Schemas"
+            },
+            "socket_timeout": 3600000,
+            "headers": {
+                "X-Authorization": "{client_secret}"
+            }
+        }
+    },
+    "connection": {
+        "items": [
+            {
+                "name": "tenant_id",
+                "type": "textbox",
+                "label": "Tenent URL:",
+                "value": "app.informedk12.com",
+                "required": true,
+                "hidden": true,
+                "order": 1
+            },
+            {
+                "name": "client_secret",
+                "type": "textbox",
+                "label": "API Key",
+                "password": true,
+                "required": true,
+                "order": 2
+            }
+        ]
+    }
+  }
