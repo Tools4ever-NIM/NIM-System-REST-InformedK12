@@ -85,20 +85,6 @@
                         "resource_mandatory": [
                             "id"
                         ]
-                    },
-                    "UserDelete": {
-                        "method": "delete",
-                        "semantics": "delete",
-                        "call": {
-                            "path": "/Users/{id}"
-                        },
-                        "processing_options": {
-                            "output_field": "Resources"
-                        },
-                        "resource_allowance_default": "prohibited",
-                        "resource_mandatory": [
-                            "id"
-                        ]
                     }
                 },
                 "key": "id",
