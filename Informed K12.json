@@ -50,10 +50,26 @@
                         "call": {
                             "path": "/v1/scim/v2/Users"
                         },
+                        "removeBlankFields": true,
+                        "body": {
+                            "_nim_merge_attributes_": false,
+                            "userName": "{userName}",
+                            "active": "{active}",
+                            "name": {
+                                "givenName": "{name.givenName}",
+                                "familyName": "{name.familyName}"
+                            },
+                            "urn:ietf:params:scim:schemas:extension:informedk12:2.0:User": {
+                                "ik12Roles": "{informedk12_2_0_user.ik12Roles}"
+                            },
+                            "schemas": [
+                                "urn:ietf:params:scim:schemas:core:2.0:User"
+                            ]
+                        },
                         "processing_options": {
                             "output_field": null
                         },
-                        "resource_allowance_default": "optional",
+                        "resource_allowance_default": "prohibited",
                         "resource_prohibited": [
                             "id",
                             "meta",
@@ -64,7 +80,8 @@
                             "active",
                             "displayName",
                             "name_givenName",
-                            "name_familyName"
+                            "name_familyName",
+                            "ik12Roles"
                         ]
                     },
                     "UserUpdate": {
@@ -80,7 +97,12 @@
                         "resource_allowance_default": "optional",
                         "resource_prohibited": [
                             "meta",
-                            "schemas"
+                            "schemas",
+                            "meta_resourceType",
+                            "meta_created",
+                            "meta_lastModified",
+                            "meta_location",
+                            "meta_version"
                         ],
                         "resource_mandatory": [
                             "id"
@@ -106,7 +128,7 @@
                     },
                     "userName": "string*",
                     "active": "boolean*",
-                    "informedk12_2.0_user:urn:ietf:params:scim:schemas:extension:informedk12:2.0:User": {
+                    "informedk12_2_0_user:urn:ietf:params:scim:schemas:extension:informedk12:2.0:User": {
                         "ik12Roles": ["string*"]
                     }
                 }
