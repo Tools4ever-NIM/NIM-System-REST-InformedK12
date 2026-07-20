@@ -167,7 +167,6 @@
                 "label": "Tenent URL:",
                 "value": "app.informedk12.com",
                 "required": true,
-                "hidden": true,
                 "order": 1
             },
             {
